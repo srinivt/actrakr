@@ -1,0 +1,83 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica, Arial, Sans-serif;
+}
+
+#wrapper {
+  background-color: #fffeff;
+  width: 740px;
+  margin: 0 auto;
+  padding: 5px;
+  
+}
+
+h1 {
+  background-color: rgb(229, 236, 249);
+  border-top: 2px solid rgb(51, 102, 204);
+  margin: 0px 0px 1em 0px;
+  padding: 0.2em 0.6em;
+  font-size: 1.5em;
+}
+
+ul, form {
+  margin: 0 50px;
+  padding: 0;
+}
+
+ul {
+  margin-top: 5px;
+  border-top: 1px solid #333;
+}
+
+input[type=text], input[type='submit'] {
+  border: 1px solid #666;
+  padding: 5px 10px;
+  font-size: 1.2em;
+}
+
+input[type=text] {
+  width: 500px;
+}
+
+ul li {
+  list-style-type: none;
+  padding: 5px 10px;
+  font-size: 1.2em;
+}
+
+ul li a {
+  float: right;
+  font-size: 0.8em;
+  margin: 0 0.3em;
+}
+
+ul li a {
+  display: none;
+}
+
+ul li:hover a {
+  display: block;
+}
+
+.color1 {
+  background-color: #ffe;
+}
+
+.color2 {
+  background-color: #eeffff;
+}
+
+.logout {
+  float: right;
+  margin: 10px 10px 0 0;
+  font-size: 0.9em;
+}
+
+.flash {
+  background: yellow; 
+  padding: 5px 10px; 
+  margin-bottom: 20px; 
+  font-weight: bold; 
+  color: brown
+}
