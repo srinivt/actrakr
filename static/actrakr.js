@@ -13,7 +13,7 @@ function deleteListItem(id) {
     $.post("/delete", { 
       'id' : id
     }, function(data) { 
-      window.location.pathname = '/';
+      window.location.href = '/';
     });
   }
 }
