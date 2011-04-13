@@ -7,6 +7,7 @@
 	<title>acTrakr</title>
   <script src='/static/jquery-1.3.2.min.js'></script>
   <script src='/static/jquery-ui-1.7.2.custom.min.js'></script>
+  <script src='/static/jquery.hotkeys.js'></script>
   <script src='/static/actrakr.js'></script>
   <link href="/static/actrakr.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
@@ -24,7 +25,7 @@
   
   <div>
     <form method='POST' action='/'>
-      <input type='text' name='new_item' cols=40 />
+      <input type='text' id='new_item' name='new_item' cols=40 />
       <input type='submit' name='add_item' value='Add Item' />
     </form>
   </div>

@@ -17,3 +17,7 @@ function deleteListItem(id) {
     });
   }
 }
+
+$(document).bind('keydown', '/', function() { $("#new_item").focus(); });
+
+
