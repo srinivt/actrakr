@@ -13,4 +13,10 @@ indexes:
 - kind: ListItem
   properties:
   - name: account
+  - name: category
+  - name: completed_at
+
+- kind: ListItem
+  properties:
+  - name: account
   - name: completed_at

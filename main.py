@@ -57,7 +57,8 @@ def renderTemplate(handler, template_name, template_values = {}):
     ctxs = ["important-urgent", "important-not-urgent", "unimportant-urgent", "unimportant-not-urgent"]
     temp_dict['items_by_ctx'] = dict()
     for ctx in ctxs:
-      temp_dict['items_by_ctx'][ctx] = query.filter('category = ', ctx).fetch(100)
+      q = ListItem.all().filter('account =', cu).filter('completed_at = ', None)
+      temp_dict['items_by_ctx'][ctx] = q.filter('category = ', ctx).fetch(100)
 	
 	  # Fix ones with no category
     temp_dict['items_by_ctx']['important-urgent'].append(query.filter('category = ', None).fetch(100))
@@ -108,6 +109,7 @@ def main():
                                           ('/', MainHandler), 
                                           ('/delete', MainHandler)
                                        ], debug=True)
+  webapp.template.register_template_library('django_hack')
   wsgiref.handlers.CGIHandler().run(application)
 
 if __name__ == '__main__':

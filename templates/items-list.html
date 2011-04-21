@@ -15,7 +15,7 @@
     
   {% if items_by_ctx %}
   <ul>
-    {% for i in items_by_ctx.ctx %}
+    {% for i in items_by_ctx|hash:ctx %}
     <li id='list_{{ i.key.id }}' class='item clearfix'> 
       <input type='checkbox' onclick='updateItem(this, {{ i.key.id }})' class='item-check'>
       <div class='name' id='item-name-{{ i.key.id }}'>{{ i.name }}</div>
