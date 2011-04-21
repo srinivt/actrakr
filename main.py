@@ -31,6 +31,9 @@ class ListItem(db.Model):
   created_at = db.DateTimeProperty(required=True, auto_now_add=True);
   completed_at = db.DateTimeProperty();
   account = db.UserProperty(required=True);
+  category = db.StringProperty()
+  
+
   # Write list item accessors 
   # ListItem.pendingItems(user)
   # ListItem.doneItems(user)
@@ -49,13 +52,25 @@ def renderTemplate(handler, template_name, template_values = {}):
       query = query.filter('completed_at != ', None)
     else:
       query = query.filter('completed_at = ', None)
-    temp_dict['items'] = query.fetch(100)
-      
+    temp_dict['items'] = query.fetch(1000)
+
+    ctxs = ["important-urgent", "important-not-urgent", "unimportant-urgent", "unimportant-not-urgent"]
+    temp_dict['items_by_ctx'] = dict()
+    for ctx in ctxs:
+      temp_dict['items_by_ctx'][ctx] = query.filter('category = ', ctx).fetch(100)
+	
+	  # Fix ones with no category
+    temp_dict['items_by_ctx']['important-urgent'].append(query.filter('category = ', None).fetch(100))
+    temp_dict['ctx_list'] = ctxs
+
   handler.response.out.write(template.render(path, temp_dict))
 
-def addNewItem(item):
+def addNewItem(item, cat):
   if item:
-    i = ListItem(name = item, created_at = datetime.datetime.now(), account=users.get_current_user())
+    i = ListItem(name = item, 
+      created_at = datetime.datetime.now(), 
+      account=users.get_current_user(),
+      category=cat)
     i.put()
     return i.key().id()
   else:
@@ -66,7 +81,9 @@ def homePage(self):
   
 def addOrUpdateItem(self):
   if self.request.get('new_item'):
-    return renderTemplate(self, 'home', {'new_item' : addNewItem(self.request.get('new_item'))})
+    return renderTemplate(self, 'home', {
+      'new_item' : addNewItem(self.request.get('new_item'), self.request.get('category'))
+      })
   elif self.request.get('id'):
     item = ListItem.get_by_id(int(self.request.get('id')))
     if (self.request.get('status') == '1'):  

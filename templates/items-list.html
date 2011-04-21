@@ -1,0 +1,30 @@
+<div class='span-10 {{ ctx }} cell'>
+  <div class='cell-head'> 
+    <span> {{ ctx|title }} </span>
+    <a href='#' onclick='$("#form-{{ ctx }}").show()' style='float:right'> New </a>
+  </div>
+  
+  <div class='items'>
+    <form method='POST' action='/' style='display:none' id='form-{{ ctx }}'>
+      <input type='checkbox' disabled=true />
+      <input type='text' id='new_item' name='new_item' cols=40 />
+      <input type='submit' name='add_item' value='Add' />
+      <input type='hidden' name='category' value='{{ ctx }}'>
+      <a href='#' onclick='$("#form-{{ ctx }}").hide()'> x </a>
+    </form>
+    
+  {% if items_by_ctx %}
+  <ul>
+    {% for i in items_by_ctx.ctx %}
+    <li id='list_{{ i.key.id }}' class='item clearfix'> 
+      <input type='checkbox' onclick='updateItem(this, {{ i.key.id }})' class='item-check'>
+      <div class='name' id='item-name-{{ i.key.id }}'>{{ i.name }}</div>
+      <a href='#' onclick='deleteListItem({{ i.key.id }})'>x</a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <h2 align='center' class='empty-msg'>Nothing here yet! Get started by creating a few items</h2>
+  {% endif %}
+  </div>
+</div>

@@ -1,9 +1,13 @@
-function updateItem(id) {
+function updateItem(check, id) {
+	if (!check.checked) {
+		return;
+	}
+	$("#item-name-" + id).css('text-decoration', 'line-through');
   $.post("/", { 
     'id' : id, 
     'status' : 1 
   }, function(data) { 
-    window.location.pathname = '/';
+    window.location.href = '/';
   });
 }
 
@@ -17,7 +21,3 @@ function deleteListItem(id) {
     });
   }
 }
-
-$(document).bind('keydown', '/', function() { $("#new_item").focus(); });
-
-
