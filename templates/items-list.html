@@ -15,6 +15,7 @@
     
   {% if items_by_ctx %}
   <ul>
+    {% if items_by_ctx|hash:ctx %}
     {% for i in items_by_ctx|hash:ctx %}
     <li id='list_{{ i.key.id }}' class='item clearfix'> 
       <input type='checkbox' onclick='updateItem(this, {{ i.key.id }})' class='item-check'>
@@ -22,6 +23,12 @@
       <a href='#' onclick='deleteListItem({{ i.key.id }})'>del</a>
     </li>
     {% endfor %}
+    {% else %}
+    <script>$('#form-{{ ctx }}').show();</script>
+    <center style='color: #555; margin-top: 1.5em;'>
+      --- Nothing else here yet! ---
+    </center>
+    {% endif %}
   </ul>
   {% else %}
   <h2 align='center' class='empty-msg'>Nothing here yet! Get started by creating a few items</h2>
