@@ -14,11 +14,16 @@
 </head>
 
 <body>
-  <div id='wrapper' class='container'>
+  <div class='banner'>
+    <div class='clearfix'>
     {% if current_user %}
-    <div class='logout'> {{ current_user }} (<a href='{{ logout_url }}'>Logout</a>)</div>
+    <div class='logout'> {{ current_user }} <a href='{{ logout_url }}'>logout</a></div>
     {% endif %}
-    <h1>acTrakr</h1>
+    <h2>acTrakr</h2>
+    </div>
+  </div>
+  
+  <div id='wrapper' class='container'>    
 
     {% if flash %}
     <div class='flash'> {{ flash }} </div>
@@ -38,7 +43,7 @@
   </div>
 
   {% if new_item %}
-  <script>$('#list_{{ new_item }}').effect('highlight', {}, 2000);</script>
+  <script>$('#list_{{ new_item }}').effect('highlight', {}, 1000);</script>
   {% endif %}
 
   <script> $("#new_item").focus(); </script>

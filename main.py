@@ -58,10 +58,12 @@ def renderTemplate(handler, template_name, template_values = {}):
     temp_dict['items_by_ctx'] = dict()
     for ctx in ctxs:
       q = ListItem.all().filter('account =', cu).filter('completed_at = ', None)
-      temp_dict['items_by_ctx'][ctx] = q.filter('category = ', ctx).fetch(100)
+      temp_dict['items_by_ctx'][ctx] = q.filter('category = ', ctx).order('-created_at').fetch(100)
 	
 	  # Fix ones with no category
-    temp_dict['items_by_ctx']['important-urgent'].append(query.filter('category = ', None).fetch(100))
+    no_cat = query.filter('category = ', None).fetch(100)
+    if len(no_cat) > 0:
+      temp_dict['items_by_ctx']['important-urgent'] += no_cat
     temp_dict['ctx_list'] = ctxs
 
   handler.response.out.write(template.render(path, temp_dict))

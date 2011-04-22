@@ -12,7 +12,7 @@ function updateItem(check, id) {
 }
 
 function deleteListItem(id) {
-  item_text = $('#list_' + id + '>span').text();
+  item_text = $('#item-name-' + id).text();
   if (confirm("Delete '" + item_text + "'?")) { 
     $.post("/delete", { 
       'id' : id
@@ -20,4 +20,9 @@ function deleteListItem(id) {
       window.location.href = '/';
     });
   }
+}
+
+function showNewForm(ctx) {
+  $("#form-" + ctx).show();
+  $('#new_item-' + ctx).focus();
 }
