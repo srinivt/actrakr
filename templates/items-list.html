@@ -1,6 +1,6 @@
 <div class='span-10 {{ ctx }} cell'>
-  <div class='cell-head'> 
-    <span> {{ ctx|title }} </span>
+  <div class='cell-head clearfix'> 
+    <h3> {{ ctx|title }} </h3>
     <a href='#' onclick="showNewForm('{{ ctx }}')" style='float:right'> New </a>
   </div>
   
@@ -19,7 +19,9 @@
     <li id='list_{{ i.key.id }}' class='item clearfix'> 
       <input type='checkbox' onclick='updateItem(this, {{ i.key.id }})' class='item-check'>
       <div class='name' id='item-name-{{ i.key.id }}'>{{ i.name }}</div>
-      <a href='#' onclick='deleteListItem({{ i.key.id }})'>del</a>
+      <a href='#' onclick='deleteListItem({{ i.key.id }})'>
+        <img style='width:10px; opacity: 0.5; vertical-align:middle' src='/static/del.png' />
+      </a>
     </li>
     {% endfor %}
   </ul>

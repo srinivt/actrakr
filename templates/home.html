@@ -11,13 +11,14 @@
   <script src='/static/actrakr.js'></script>
   <link href="/static/screen.css" media="screen" rel="stylesheet" type="text/css" />
   <link href="/static/actrakr.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='http://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
   <div class='banner'>
     <div class='clearfix'>
     {% if current_user %}
-    <div class='logout'> {{ current_user }} <a href='{{ logout_url }}'>logout</a></div>
+    <div class='logout'> Hi, {{ current_user }}! &nbsp; <a href='{{ logout_url }}'>logout</a></div>
     {% endif %}
     <h2>acTrakr</h2>
     </div>
